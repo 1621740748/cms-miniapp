@@ -29,13 +29,13 @@ public class ApiController {
     @Autowired
     ApiService apiService;
 
-    @PostMapping("getCategory")
+    @RequestMapping("getCategory")
     public List<CommonVO> getCategory() {
         return apiService.getCategory();
     }
 
-    @PostMapping("getIndex")
-    public IndexListVO getIndex(@RequestParam(required = false) Long category_id, @RequestParam Integer page_index, @RequestParam Integer page_size, @RequestParam(required = false) String keyword) {
+    @RequestMapping("getIndex")
+    public IndexListVO getIndex(@RequestParam(name="categoryId",required = false) Long category_id, @RequestParam(name="pageIndex") Integer page_index, @RequestParam(name="pageSize") Integer page_size, @RequestParam(required = false) String keyword) {
         IndexListDTO dto = new IndexListDTO();
         dto.setCategory_id(category_id);
         dto.setPage_index(page_index);
@@ -44,93 +44,93 @@ public class ApiController {
         return apiService.getIndex(dto);
     }
 
-    @PostMapping("detail")
+    @RequestMapping("detail")
     public DetailVO detail(@RequestParam Long id, @RequestParam Integer page_size) {
         return apiService.detail(id, page_size);
     }
 
 
-    @PostMapping("miniAppLogin")
+    @RequestMapping("miniAppLogin")
     public TokenVO miniAppLogin(@RequestParam String share_user_id, @RequestParam String code, @RequestParam String user_info
             , @RequestParam String encrypted_data, @RequestParam String iv, @RequestParam String signature) {
         return apiService.miniAppLogin(share_user_id, code, user_info, encrypted_data, iv, signature);
     }
 
-    @PostMapping("login")
+    @RequestMapping("login")
     public LoginVO login(@RequestParam String mobile, @RequestParam String password) {
         return apiService.login(mobile, password);
     }
 
-    @PostMapping("register")
+    @RequestMapping("register")
     public LoginVO register(@RequestParam String mobile, @RequestParam String nickname, @RequestParam String password, @RequestParam String verify_code) {
         return apiService.register(mobile, nickname, password, verify_code);
     }
 
-    @PostMapping("comment")
+    @RequestMapping("comment")
     public PageInfo<CommentVO> comment(@RequestParam Long article_id, @RequestParam Integer page_index, @RequestParam Integer page_size) {
         return apiService.comment(article_id, page_index, page_size);
     }
 
-    @PostMapping("commentDetail")
+    @RequestMapping("commentDetail")
     public CommentVO commentDetail(@RequestParam Long id, @RequestParam Integer page_index, @RequestParam Integer page_size) {
         return apiService.commentDetail(id, page_index, page_size);
     }
 
-    @PostMapping("commentLike")
+    @RequestMapping("commentLike")
     public Integer commentLike(@RequestParam Long comment_id) {
         return apiService.changeCollect(comment_id, 4);
     }
 
-    @PostMapping("like")
+    @RequestMapping("like")
     public Integer like(@RequestParam Long article_id) {
         return apiService.changeCollect(article_id, 2);
     }
 
-    @PostMapping("favorite")
+    @RequestMapping("favorite")
     public Integer favorite(@RequestParam Long article_id) {
         return apiService.changeCollect(article_id, 1);
     }
 
-    @PostMapping("userInfo")
+    @RequestMapping("userInfo")
     public UserInfoVO userInfo() {
         return apiService.userInfo();
     }
 
-    @PostMapping("favoriteList")
+    @RequestMapping("favoriteList")
     public PageInfo<FavoriteVO> favoriteList(@RequestParam Integer page_index, @RequestParam Integer page_size) {
         return apiService.favoriteList(page_index, page_size);
     }
 
-    @PostMapping("logout")
+    @RequestMapping("logout")
     public Integer logout() {
         return apiService.logout();
     }
 
-    @PostMapping("updatePassword")
+    @RequestMapping("updatePassword")
     public Integer updatePassword(@RequestParam String old_password, @RequestParam String new_password) {
         return apiService.updatePassword(old_password, new_password);
     }
 
-    @PostMapping("noAuth")
+    @RequestMapping("noAuth")
     public void noAuth() {
         throw new BasicException(SysCode.TOKEN_NOT_NULL);
     }
 
-    @PostMapping("userIndex")
+    @RequestMapping("userIndex")
     public UserInfoVO userIndex() {
         return apiService.userInfo();
     }
 
-    @PostMapping("addComment")
+    @RequestMapping("addComment")
     public PageInfo<CommentVO> addComment(@RequestParam Long article_id, @RequestParam String content, @RequestParam Integer page_size) {
         return apiService.addComment(article_id, content, page_size);
     }
 
-    @PostMapping("addReply")
+    @RequestMapping("addReply")
     public PageInfo<CommentVO> addReply(@RequestParam Long comment_id, @RequestParam Long pid, @RequestParam String content, @RequestParam Integer page_size) {
         return apiService.addReply(comment_id, pid, content, page_size);
     }
-    @PostMapping("feedback")
+    @RequestMapping("feedback")
     public Integer feedback(@RequestParam String content){
         return 0;
     }

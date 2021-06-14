@@ -17,8 +17,8 @@ spring:
       indent_output: true
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/miniapp?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
-    username: miniapp
-    password: 数据库密码
+    username: root
+    password: example123
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     druid:

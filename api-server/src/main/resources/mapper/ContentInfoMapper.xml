@@ -5,7 +5,7 @@
 
     <sql id="getIndexSql">
         SELECT
-        id, title,photo_url,`read_count` as `read`,create_time,source,comment_count
+        id, title,photo_url, `read`,create_time,source,comment_count
         from content_info
         where enable=1
         <if test="null !=category_id and ''!=category_id">
@@ -29,7 +29,7 @@
     </select>
     <select id="getFavoriteList" resultType="com.mrguan.tcyhwapp.entity.vo.FavoriteVO">
      SELECT
-        c.id, c.title,c.photo_url,c.`read_count` as `read`,c.create_time,c.source,c.comment_count,u.create_time favorite_time
+        c.id, c.title,c.photo_url,c.`read`,c.create_time,c.source,c.comment_count,u.create_time favorite_time
         from content_info c right join user_collect_info u on  c.id=u.c_id and u.type=1
         where c.enable=1 and u.user_id=#{userId} order by u.create_time desc
     </select>
