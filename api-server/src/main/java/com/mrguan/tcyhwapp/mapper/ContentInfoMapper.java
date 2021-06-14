@@ -30,6 +30,6 @@ public interface ContentInfoMapper extends MyBaseMapper<ContentInfo> {
     @Update("UPDATE content_info set like_count=like_count+(#{count}) where id=#{id}")
     int addLikeCount(@Param("count") Integer count, @Param("id") Long id);
 
-    @Update("UPDATE content_info set `read_count`=`read_count`+1 where id=#{id}")
+    @Update("UPDATE content_info set `read`=`read`+1 where id=#{id}")
     int addRead(Long id);
 }

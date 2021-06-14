@@ -53,7 +53,7 @@ public class ApiController {
     }
 
     @RequestMapping("detail")
-    public DetailVO detail(@RequestParam Long id, @RequestParam Integer page_size) {
+    public DetailVO detail(@RequestParam(name="id") Long id, @RequestParam(name="pageSize") Integer page_size) {
         return apiService.detail(id, page_size);
     }
 
